@@ -1,7 +1,10 @@
 name: Cypress e2e Tests
 
-on: 
+on:
   workflow_dispatch:
+    inputs:
+      spec:
+        default: cypress/e2e/* 
 
 jobs:
   tests:
@@ -28,6 +31,7 @@ jobs:
           browser: chrome
           record: true
           parallel: true
+          spec: ${{ github.event.inputs.spec }}
 
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}

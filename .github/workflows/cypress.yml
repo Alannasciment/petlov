@@ -5,6 +5,9 @@ on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
+    container:
+    image: cypress/browsers:24.21.0
+    options: --user 1001
 
     strategy:
       fail-fast: false
@@ -20,6 +23,7 @@ jobs:
         with:
           install-command: npm install
           wait-on: 'https://petlov.vercel.app'
+          browser: chrome
           record: true
           parallel: true
 
